@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/box.css"/>
     <link rel="stylesheet" href="css/slider.css"/>
     <link rel="stylesheet" href="css/button.css"/>
+    <link rel="stylesheet" href="css/switch.css"/>
   </head>
 
   <body>
@@ -30,6 +31,20 @@
       <div class="slidecontainer">
         <label>Repetitions: </label> <input class="number_slide" type="number" value="7"> <input type="range" min="0" max="15" value="7" class="slider">
       </div>
+
+      <div class="slidecontainer"><label>Only last: </label></div>
+
+      <label class="a_switch">
+        <input type="checkbox" id="only_last">
+        <span class="a_slider"></span>
+      </label>
+
+      <div class="slidecontainer"><label>Colored: </label></div>
+
+      <label class="a_switch">
+        <input type="checkbox" id="colored">
+        <span class="a_slider"></span>
+      </label>
     </div>
 
     <div class="boxes">
@@ -84,7 +99,6 @@
       <!-- <p id="loading" style="visibility: visible; display: inline;">Loading...</p> -->
     </div>
 
-    <canvas id="similar_canvas" width="1000" height="1000" style="border:1px solid #000000;">
-    </canvas>
+    <canvas id="similar_canvas" width="1000" height="1000" style="border:1px solid #000000;"></canvas>
   </body>
 </html>

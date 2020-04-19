@@ -1,8 +1,10 @@
 var build = function(){
-	similar.height = parseInt($(".box_fix").children()[0].children[1].value)
-	similar.width = parseInt($(".box_fix").children()[1].children[1].value)
-	similar.size_square = parseInt($(".box_fix").children()[2].children[1].value)
-	similar.repetition = parseInt($(".box_fix").children()[3].children[1].value)
+	similar.height = parseInt($(".box_fix").children()[0].children[1].value);
+	similar.width = parseInt($(".box_fix").children()[1].children[1].value);
+	similar.size_square = parseInt($(".box_fix").children()[2].children[1].value);
+	similar.repetition = parseInt($(".box_fix").children()[3].children[1].value);
+	similar.only_last = $("#only_last")[0].checked;
+	similar.colored = $("#colored")[0].checked;
 
 	similar.iteration = [];
 	$.each($(".boxes").children(), function(index, value){
@@ -50,6 +52,8 @@ var clickEvents = function(){
 	$(".addButton").on("mouseup", add_fractal);
 	$(".buildButton").on("mouseup", build);
 	$(".randomButton").on("mouseup", randomBuild);
+	$("#only_last").on("input", build);
+	$("#colored").on("input", build);
 }
 
 var change_value = function(eventObject){

@@ -1,0 +1,14 @@
+.box_fractal{
+  float: left;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.box_fractal canvas{
+  display: block;
+}
+.box_fractal label{
+  float: right;
+  font-family: Arial;
+	font-size: 17px;
+  text-align: center;
+}

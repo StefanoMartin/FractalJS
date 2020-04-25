@@ -43,9 +43,9 @@ var is_of_julia = function(x, c, max, iteration, p){
 
 var colour_point2 = function(i, iterations, pix, ppos){
   if (i == 0) {
-    pix[ppos] = 0;
-    pix[ppos + 1] = 0;
-    pix[ppos + 2] = 0;
+    pix[ppos] = 255;
+    pix[ppos + 1] = 255;
+    pix[ppos + 2] = 255;
   } else {
     var c = 3 * Math.log(i+1) / Math.log(iterations+1);
     if (c < 1) {

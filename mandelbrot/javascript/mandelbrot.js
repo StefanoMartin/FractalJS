@@ -30,17 +30,7 @@ var mandelbrot = {
       }
     }
     ctx.putImageData(id, 0, 0);
-  },
-  // readapt: function(){
-  //   console.log("TEMP:" + this.temp_x + "," + this.temp_y)
-  //   let middle_point = [this.temp_x[0] + (this.temp_x[1]-this.temp_x[0])/2, this.temp_y[0] + (this.temp_y[1]-this.temp_y[0])/2]
-  //   console.log("MIDDLEPOINT: " + middle_point)
-  //   let span = Math.max(Math.abs(this.temp_x[1]-this.temp_x[0]),  Math.abs(this.temp_y[1]-this.temp_y[0]))/2
-  //   console.log("SPAN: " + span)
-  //   this.x = [middle_point[0]-span, middle_point[0]+span];
-  //   this.y = [middle_point[1]-span, middle_point[1]+span];
-  //   console.log(this.x + "," + this.y)
-  // }
+  }
 }
 
 var colour_point = function(i, iterations, pix, ppos){

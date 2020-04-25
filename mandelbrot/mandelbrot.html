@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <script src="javascript/mandelbrot.js"></script>
+    <script src="javascript/julia.js"></script>
+    <script src="javascript/main.js"></script>
+    <link rel="stylesheet" href="css/box.css"></script>
+  </head>
+
+  <body>
+    <div class="box_fractal">
+      <canvas id="mandelbrot" width="400" height="400" style="border:1px solid #000000;"></canvas>
+      <label>Mandelbrot set</label>
+    </div>
+
+    <div class="box_fractal">
+      <canvas id="julia" width="400" height="400" style="border:1px solid #000000;"></canvas>
+      <label>Julia set F(x) = x^<span id=p_j_1>2</span> + <span id=p_j_2>0</span> + i(<span id=p_j_3>0</span>)</label>
+    </div>
+
+    <input type="button" id="reset" value="Reset" />
+  </body>
+</html>

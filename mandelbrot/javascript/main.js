@@ -3,7 +3,7 @@ var build = function(){
 	julia.paint();
 }
 
-var zoom = function(e){
+var zoom_mandelbrot = function(e){
 	x = getPoint(e);
 	distance = (mandelbrot.x[1]-mandelbrot.x[0])/10
 	mandelbrot.x = [x[0]-distance, x[0]+distance]
@@ -12,7 +12,17 @@ var zoom = function(e){
 	mandelbrot.paint();
 }
 
+var zoom_julia = function(e){
+	x = getPointJulia(e);
+	distance = (julia.x[1]-julia.x[0])/10
+	julia.x = [x[0]-distance, x[0]+distance]
+	julia.y = [-x[1]-distance, -x[1]+distance]
+	julia.iteration += 500;
+	julia.paint();
+}
+
 var create_julia = function(e){
+	if(julia.blocked){ return; }
 	x = getPoint(e);
 	$("#p_j_2")[0].innerHTML = x[0].toPrecision(2);
 	$("#p_j_3")[0].innerHTML = x[1].toPrecision(2);
@@ -35,6 +45,16 @@ var getPoint = function(e){
 	return [x,y];
 }
 
+var getPointJulia = function(e){
+	var canvas = $("#julia")[0]
+	let rect = canvas.getBoundingClientRect();
+  let x = e.clientX - rect.left;
+  let y = e.clientY - rect.top;
+	x = x*(julia.x[1]-julia.x[0])/canvas.width+julia.x[0]
+	y = -(y*(julia.y[1]-julia.y[0])/canvas.height+julia.y[0])
+	return [x,y];
+}
+
 var reset_fractals = function(){
 	mandelbrot.x = [-1.5, 1.5];
 	mandelbrot.y = [-1.5, 1.5];
@@ -47,10 +67,23 @@ var reset_fractals = function(){
 	julia.paint();
 }
 
+var space_press = function(e){
+	if(e.keyCode != 32){ return; }
+	if(julia.blocked){
+		$("#p_j_7")[0].innerHTML = "Unblocked";
+		julia.blocked = false;
+	}else{
+		$("#p_j_7")[0].innerHTML = "Blocked";
+		julia.blocked = true;
+	}
+}
+
 var clickEvents = function(){
 	$("#mandelbrot").on("mousemove", create_julia);
-	$("#mandelbrot").on("dblclick", zoom);
+	$("#mandelbrot").on("dblclick", zoom_mandelbrot);
+	$("#julia").on("dblclick", zoom_julia);
 	$("#reset").on("click", reset_fractals);
+	$("body").on("keyup", space_press);
 }
 
 $(document).ready(function(){

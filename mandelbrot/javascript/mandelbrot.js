@@ -8,7 +8,10 @@ var mandelbrot = {
   temp_y: [0,0],
   iteration: 200,
   paint: function(){
-    console.log(this.x + "," + this.y)
+    $("#p_m_2")[0].innerHTML = "[" + this.x[0].toPrecision(2) + "," + this.x[1].toPrecision(2) + "]";
+    $("#p_m_3")[0].innerHTML = "[" + this.y[0].toPrecision(2) + "," + this.y[1].toPrecision(2) + "]";
+    $("#p_m_4")[0].innerHTML = this.iteration;
+
     var canvas = $("#mandelbrot");
     canvas[0].width  = this.width;
     canvas[0].height = this.height;

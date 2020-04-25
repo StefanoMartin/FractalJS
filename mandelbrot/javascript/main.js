@@ -78,12 +78,22 @@ var space_press = function(e){
 	}
 }
 
+var change_value_slide = function(eventObject){
+	value = eventObject.target.value;
+	mandelbrot.power = value;
+	julia.power = value;
+	$("#p_j_1")[0].innerHTML = value;
+	$("#p_m_1")[0].innerHTML = value;
+	build();
+}
+
 var clickEvents = function(){
 	$("#mandelbrot").on("mousemove", create_julia);
 	$("#mandelbrot").on("dblclick", zoom_mandelbrot);
 	$("#julia").on("dblclick", zoom_julia);
 	$("#reset").on("click", reset_fractals);
 	$("body").on("keyup", space_press);
+	$("body").on("input", ".number_slide", change_value_slide);
 }
 
 $(document).ready(function(){

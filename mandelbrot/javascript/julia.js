@@ -4,10 +4,10 @@ var julia = {
   power: 2,
   x: [-1.5, 1.5],
   y: [-1.5, 1.5],
-  c: [0, 0],
+  c: [-1.5, 1.5],
   max: 2,
   blocked: false,
-  iteration: 400,
+  iteration: 200,
   paint: function(){
     $("#p_j_4")[0].innerHTML = "[" + this.x[0] + "," + this.x[1] + "]";
     $("#p_j_5")[0].innerHTML = "[" + this.y[0] + "," + this.y[1] + "]";

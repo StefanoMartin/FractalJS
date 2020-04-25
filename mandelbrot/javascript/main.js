@@ -8,7 +8,7 @@ var zoom_mandelbrot = function(e){
 	distance = (mandelbrot.x[1]-mandelbrot.x[0])/10
 	mandelbrot.x = [x[0]-distance, x[0]+distance]
 	mandelbrot.y = [-x[1]-distance, -x[1]+distance]
-	mandelbrot.iteration += 500;
+	mandelbrot.iteration += 200;
 	mandelbrot.paint();
 }
 
@@ -17,7 +17,7 @@ var zoom_julia = function(e){
 	distance = (julia.x[1]-julia.x[0])/10
 	julia.x = [x[0]-distance, x[0]+distance]
 	julia.y = [-x[1]-distance, -x[1]+distance]
-	julia.iteration += 500;
+	julia.iteration += 200;
 	julia.paint();
 }
 
@@ -62,8 +62,8 @@ var reset_fractals = function(){
 	mandelbrot.paint();
 	julia.x = [-1.5, 1.5];
 	julia.y = [-1.5, 1.5];
-	julia.iteration = 400;
-	julia.c = [0,0];
+	julia.iteration = 200;
+	julia.c = [-1.5, 1.5];
 	julia.paint();
 }
 

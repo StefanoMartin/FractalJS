@@ -13,19 +13,30 @@
   <body>
     <div class="box_fractal">
       <canvas id="mandelbrot" width="400" height="400" style="border:1px solid #000000;"></canvas>
-      <label>Mandelbrot set F(x) = x^<span id=p_m_1>2</span> + c</br>
-      Zoom x in <span id=p_m_2>[-1.5,1.5]</span>, y in <span id=p_m_3>[-1.5,1.5]</span></br>
-      Iterations <span id=p_m_4>400</span></label>
+      <label>Mandelbrot set</br>
+      F(x) = x^<span id=p_m_1>2</span> + c</br>
+      x: <span id=p_m_2>[-1.5,1.5]</span></br>y: <span id=p_m_3>[-1.5,1.5]</span></br>
+      Iterations: <span id=p_m_4>400</span></label>
     </div>
 
     <div class="box_fractal">
       <canvas id="julia" width="400" height="400" style="border:1px solid #000000;"></canvas>
-      <label>Julia set F(x) = x^<span id=p_j_1>2</span> + <span id=p_j_2>0</span> + i(<span id=p_j_3>0</span>)</br>
-      Zoom x in <span id=p_j_4>[-1.5,1.5]</span>, y in <span id=p_j_5>[-1.5,1.5]</span></br>
-      Iterations <span id=p_j_6>400</span></label></br>
-      <span id=p_j_7>Unblocked</span>
+      <label>Julia set</br>
+      F(x) = x^<span id=p_j_1>2</span> + <span id=p_j_2>0</span> + i(<span id=p_j_3>0</span>)</br>
+      x: <span id=p_j_4>[-1.5,1.5]</span></br>y : <span id=p_j_5>[-1.5,1.5]</span></br>
+      Iterations: <span id=p_j_6>400</span></br>
+      <span id=p_j_7>Unblocked</span></label>
     </div>
 
     <input type="button" id="reset" value="Reset" />
+
+    <div>
+      <p class="instruction">
+        Move the mouse on the Mandelbrot set</br>
+        to change the Julia set</br>
+        Double click to zoom</br>
+        Space to block/unblock the Julia set</br>
+      </p>
+    </div>
   </body>
 </html>

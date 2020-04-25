@@ -9,8 +9,8 @@ var julia = {
   blocked: false,
   iteration: 400,
   paint: function(){
-    $("#p_j_4")[0].innerHTML = "[" + this.x[0].toPrecision(2) + "," + this.x[1].toPrecision(2) + "]";
-    $("#p_j_5")[0].innerHTML = "[" + this.y[0].toPrecision(2) + "," + this.y[1].toPrecision(2) + "]";
+    $("#p_j_4")[0].innerHTML = "[" + this.x[0] + "," + this.x[1] + "]";
+    $("#p_j_5")[0].innerHTML = "[" + this.y[0] + "," + this.y[1] + "]";
     $("#p_j_6")[0].innerHTML = this.iteration;
 
     var canvas = $("#julia");

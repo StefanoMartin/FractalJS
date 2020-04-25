@@ -24,8 +24,8 @@ var zoom_julia = function(e){
 var create_julia = function(e){
 	if(julia.blocked){ return; }
 	x = getPoint(e);
-	$("#p_j_2")[0].innerHTML = x[0].toPrecision(2);
-	$("#p_j_3")[0].innerHTML = x[1].toPrecision(2);
+	$("#p_j_2")[0].innerHTML = x[0];
+	$("#p_j_3")[0].innerHTML = x[1];
 	julia.c = x;
 	julia.paint();
 }

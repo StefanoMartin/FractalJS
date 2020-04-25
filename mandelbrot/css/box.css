@@ -7,8 +7,13 @@
   display: block;
 }
 .box_fractal label{
+  width: 400px;
   float: right;
   font-family: Arial;
-	font-size: 17px;
+	font-size: 13px;
   text-align: center;
+}
+
+.instruction{
+  font-family: Arial;
 }

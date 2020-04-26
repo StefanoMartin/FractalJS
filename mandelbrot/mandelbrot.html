@@ -1,9 +1,9 @@
 <html>
   <head>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
+    <script src="http://benalman.com/code/projects/jquery-throttle-debounce/jquery.ba-throttle-debounce.js"></script>
     <script src="javascript/mandelbrot.js"></script>
     <script src="javascript/julia.js"></script>
     <script src="javascript/main.js"></script>
@@ -15,26 +15,27 @@
   <body>
     <div class="box_fractal">
       <canvas id="mandelbrot" width="400" height="400" style="border:1px solid #000000;"></canvas>
-      <label>Mandelbrot set</br>
+      <label></br>Mandelbrot set</br>
       F(x) = x^<span id=p_m_1>2</span> + c</br>
       x: <span id=p_m_2>[-1.5,1.5]</span></br>y: <span id=p_m_3>[-1.5,1.5]</span></br>
-      Iterations: <span id=p_m_4>400</span></label>
+      Iterations: <span id=p_m_4>400</span></br></br>
+      <a href="#" class="m_button" id="reset_m">Reset</a></label>
     </div>
 
     <div class="box_fractal">
       <canvas id="julia" width="400" height="400" style="border:1px solid #000000;"></canvas>
-      <label>Julia set</br>
+      <label></br>Julia set</br>
       F(x) = x^<span id=p_j_1>2</span> + (<span id=p_j_2>-1.5</span>) + i(<span id=p_j_3>1.5</span>)</br>
       x: <span id=p_j_4>[-1.5,1.5]</span></br>y : <span id=p_j_5>[-1.5,1.5]</span></br>
-      Iterations: <span id=p_j_6>400</span></br>
-      <span id=p_j_7>Unblocked</span></label>
+      Iterations: <span id=p_j_6>400</span></br></br>
+      <a href="#" class="m_button" id="blocking">Unblocked</a> <a href="#" class="m_button" id="reset_j">Reset</a></label>
     </div>
 
     <div class="slidecontainer">
       <label>Power: </label> <input class="number_slide" type="number" value="2">
     </div>
 
-    <a href="#" class="resetButton" id="reset">Reset</a>
+    <a href="#" class="m_button" id="reset">Reset all</a>
 
     <div>
       <p class="instruction">

@@ -33,6 +33,12 @@ var mandelbrot = {
       }
     }
     ctx.putImageData(id, 0, 0);
+  },
+  reset: function(){
+    mandelbrot.x = [-1.5, 1.5];
+  	mandelbrot.y = [-1.5, 1.5];
+  	mandelbrot.iteration = 200;
+  	mandelbrot.paint();
   }
 }
 

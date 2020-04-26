@@ -34,6 +34,15 @@ var julia = {
       }
     }
     ctx.putImageData(id, 0, 0);
+  },
+  reset: function(){
+    $("#blocking")[0].innerHTML = "Unblocked";
+		julia.blocked = false;
+    julia.x = [-1.5, 1.5];
+  	julia.y = [-1.5, 1.5];
+  	julia.iteration = 200;
+  	julia.c = [-1.5, 1.5];
+  	julia.paint();
   }
 }
 

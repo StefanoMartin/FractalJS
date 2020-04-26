@@ -56,29 +56,26 @@ var getPointJulia = function(e){
 }
 
 var reset_fractals = function(){
-	mandelbrot.x = [-1.5, 1.5];
-	mandelbrot.y = [-1.5, 1.5];
-	mandelbrot.iteration = 200;
-	mandelbrot.paint();
-	julia.x = [-1.5, 1.5];
-	julia.y = [-1.5, 1.5];
-	julia.iteration = 200;
-	julia.c = [-1.5, 1.5];
-	julia.paint();
+	mandelbrot.reset();
+	julia.reset();
 }
 
 var space_press = function(e){
 	if(e.keyCode != 32){ return; }
+	unblock_julia();
+}
+
+var unblock_julia = function(){
 	if(julia.blocked){
-		$("#p_j_7")[0].innerHTML = "Unblocked";
+		$("#blocking")[0].innerHTML = "Unblocked";
 		julia.blocked = false;
 	}else{
-		$("#p_j_7")[0].innerHTML = "Blocked";
+		$("#blocking")[0].innerHTML = "Blocked";
 		julia.blocked = true;
 	}
 }
 
-var change_value_slide = function(eventObject){
+var change_power = function(eventObject){
 	value = eventObject.target.value;
 	mandelbrot.power = value;
 	julia.power = value;
@@ -92,8 +89,11 @@ var clickEvents = function(){
 	$("#mandelbrot").on("dblclick", zoom_mandelbrot);
 	$("#julia").on("dblclick", zoom_julia);
 	$("#reset").on("click", reset_fractals);
+	$("#reset_m").on("click", mandelbrot.reset);
+	$("#reset_j").on("click", julia.reset);
+	$("#blocking").on("click", unblock_julia);
 	$("body").on("keyup", space_press);
-	$("body").on("input", ".number_slide", change_value_slide);
+	$("body").on("input", ".number_slide", $.debounce(1000, change_power));
 }
 
 $(document).ready(function(){

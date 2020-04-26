@@ -5,6 +5,7 @@ var julia = {
   x: [-1.5, 1.5],
   y: [-1.5, 1.5],
   c: [-1.5, 1.5],
+  temp_coordinate: [0,0],
   max: 2,
   blocked: false,
   iteration: 200,

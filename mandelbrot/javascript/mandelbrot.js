@@ -4,8 +4,7 @@ var mandelbrot = {
   power: 2,
   x: [-1.5, 1.5],
   y: [-1.5, 1.5],
-  temp_x: [0,0],
-  temp_y: [0,0],
+  temp_coordinate: [0,0],
   iteration: 200,
   paint: function(){
     $("#p_m_2")[0].innerHTML = "[" + this.x[0] + "," + this.x[1] + "]";

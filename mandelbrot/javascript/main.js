@@ -12,12 +12,36 @@ var zoom_mandelbrot = function(e){
 	mandelbrot.paint();
 }
 
+var zoom_out_mandelbrot = function(){
+	distance = mandelbrot.x[1]-mandelbrot.x[0]
+	new_distance = distance*2.5
+	center_point = mandelbrot.x[0] + distance/2;
+	mandelbrot.x = [center_point-new_distance, center_point+new_distance]
+	center_point = mandelbrot.y[0] + distance/2;
+	mandelbrot.y = [center_point-new_distance, center_point+new_distance]
+	mandelbrot.iteration -= 200;
+	if(mandelbrot.iteration < 200){mandelbrot.iteration = 200}
+	mandelbrot.paint();
+}
+
 var zoom_julia = function(e){
 	x = getPointJulia(e);
 	distance = (julia.x[1]-julia.x[0])/10
 	julia.x = [x[0]-distance, x[0]+distance]
 	julia.y = [-x[1]-distance, -x[1]+distance]
 	julia.iteration += 200;
+	julia.paint();
+}
+
+var zoom_out_julia = function(){
+	distance = julia.x[1]-julia.x[0]
+	new_distance = distance*2.5
+	center_point = julia.x[0] + distance/2;
+	julia.x = [center_point-new_distance, center_point+new_distance]
+	center_point = julia.y[0] + distance/2;
+	julia.y = [center_point-new_distance, center_point+new_distance]
+	julia.iteration -= 200;
+	if(julia.iteration < 200){julia.iteration = 200}
 	julia.paint();
 }
 
@@ -91,6 +115,8 @@ var clickEvents = function(){
 	$("#reset").on("click", reset_fractals);
 	$("#reset_m").on("click", mandelbrot.reset);
 	$("#reset_j").on("click", julia.reset);
+	$("#zoom_out_m").on("click", zoom_out_mandelbrot);
+	$("#zoom_out_j").on("click", zoom_out_julia);
 	$("#blocking").on("click", unblock_julia);
 	$("body").on("keyup", space_press);
 	$("body").on("input", ".number_slide", $.debounce(1000, change_power));

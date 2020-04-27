@@ -4,6 +4,7 @@ var build = function(){
 }
 
 var zoom_mandelbrot = function(e){
+	e.preventDefault();
 	x = getPoint(e);
 	distance = (mandelbrot.x[1]-mandelbrot.x[0])/10
 	mandelbrot.x = [x[0]-distance, x[0]+distance]
@@ -25,6 +26,7 @@ var zoom_out_mandelbrot = function(){
 }
 
 var zoom_julia = function(e){
+	e.preventDefault();
 	x = getPointJulia(e);
 	distance = (julia.x[1]-julia.x[0])/10
 	julia.x = [x[0]-distance, x[0]+distance]
@@ -62,8 +64,8 @@ var select_point = function(e){
 var getPoint = function(e){
 	var canvas = $("#mandelbrot")[0]
 	let rect = canvas.getBoundingClientRect();
-  let x = e.clientX - rect.left;
-  let y = e.clientY - rect.top;
+  	let x = e.clientX - rect.left;
+  	let y = e.clientY - rect.top;
 	x = x*(mandelbrot.x[1]-mandelbrot.x[0])/canvas.width+mandelbrot.x[0]
 	y = -(y*(mandelbrot.y[1]-mandelbrot.y[0])/canvas.height+mandelbrot.y[0])
 	return [x,y];
@@ -72,8 +74,8 @@ var getPoint = function(e){
 var getPointJulia = function(e){
 	var canvas = $("#julia")[0]
 	let rect = canvas.getBoundingClientRect();
-  let x = e.clientX - rect.left;
-  let y = e.clientY - rect.top;
+  	let x = e.clientX - rect.left;
+  	let y = e.clientY - rect.top;
 	x = x*(julia.x[1]-julia.x[0])/canvas.width+julia.x[0]
 	y = -(y*(julia.y[1]-julia.y[0])/canvas.height+julia.y[0])
 	return [x,y];
@@ -84,9 +86,11 @@ var reset_fractals = function(){
 	julia.reset();
 }
 
-var space_press = function(e){
-	if(e.keyCode != 32){ return; }
-	unblock_julia();
+var button_press = function(e){
+	e.preventDefault();
+	if(e.keyCode == 32){ unblock_julia(); }
+	else if([87,65,83,68].includes(e.keyCode)){ mandelbrot.move(e.keyCode); }
+	else if([38,37,40,39].includes(e.keyCode)){ julia.move(e.keyCode); }
 }
 
 var unblock_julia = function(){
@@ -108,6 +112,15 @@ var change_power = function(eventObject){
 	build();
 }
 
+var change_size_canvas = function(eventObject){
+	value = eventObject.target.value;
+	mandelbrot.width = value;
+	mandelbrot.height = value;
+	julia.width = value;
+	julia.height = value;
+	build();
+}
+
 var clickEvents = function(){
 	$("#mandelbrot").on("mousemove", create_julia);
 	$("#mandelbrot").on("dblclick", zoom_mandelbrot);
@@ -118,8 +131,9 @@ var clickEvents = function(){
 	$("#zoom_out_m").on("click", zoom_out_mandelbrot);
 	$("#zoom_out_j").on("click", zoom_out_julia);
 	$("#blocking").on("click", unblock_julia);
-	$("body").on("keyup", space_press);
-	$("body").on("input", ".number_slide", $.debounce(1000, change_power));
+	$("body").on("keyup", button_press);
+	$("body").on("input", "#power", $.debounce(1000, change_power));
+	$("body").on("input", "#size_canvas", $.debounce(1000, change_size_canvas));
 }
 
 $(document).ready(function(){

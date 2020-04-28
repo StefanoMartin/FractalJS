@@ -1,11 +1,10 @@
 var mandelbrot = {
   width: 400,
   height: 400,
-  power: 2,
   x: [-2, 2],
   y: [-2, 2],
-  temp_coordinate: [0,0],
   iteration: 200,
+  f: math.compile("x^2+c"),
   paint: function(){
     $("#loading_m")[0].innerHTML = "Loading...";
     setTimeout(function() {
@@ -27,10 +26,10 @@ var mandelbrot = {
 
       for(i=0; i<=canvas[0].width; i++){
         for(j=0; j<=canvas[0].height; j++){
-          point = [i*x_resize+mandelbrot.x[0], -(j*y_resize+mandelbrot.y[0])];
-          iterations = mandelbrot.is_of_mandelbrot(point);
+          point = [i*x_resize+mandelbrot.x[0], -(j*y_resize+mandelbrot.y[0])]
+          iterations = mandelbrot.is_of_mandelbrot(point)
           colour_point(iterations, mandelbrot.iteration, pixels,
-            (j*id.width+i)*4);
+            (j*id.width+i)*4)
         }
       }
       ctx.putImageData(id, 0, 0);
@@ -68,11 +67,13 @@ var mandelbrot = {
     mandelbrot.paint();
   },
   is_of_mandelbrot: function(c){
-    var x = [0,0];
-    if(c[0]*c[0]+c[1]*c[1] >= 4){ return 1; }
+    var x = 0;
+    var c_i = math.complex(c[0], c[1])
+    if(math.abs(c_i) >= 2){ return 1; }
     for(ii=0; ii<mandelbrot.iteration; ii++){
-      x = sum(power(x,mandelbrot.power), c);
-      if(x[0]*x[0]+x[1]*x[1] >= 4){ return ii+1; }
+      try{x = mandelbrot.f.evaluate({c:c_i,x:x});}
+      catch{ return "error"; }
+      if(math.abs(x) >= 2){ return ii+1; }
     }
     return 0
   }
@@ -83,6 +84,10 @@ var colour_point = function(i, iterations, pix, ppos){
     pix[ppos] = 255;
     pix[ppos + 1] = 255;
     pix[ppos + 2] = 200;
+  } else if(i == "error"){
+    pix[ppos] = 255;
+    pix[ppos + 1] = 255;
+    pix[ppos + 2] = 255;
   } else {
     var c = 3 * Math.log(i+1) / Math.log(iterations+1);
     if (c < 1) {
@@ -101,16 +106,4 @@ var colour_point = function(i, iterations, pix, ppos){
     }
   }
   pix[ppos+3]=255
-}
-
-var power = function(x,n,p=[1,0]){
-  if(n == 0){return p}
-  else{
-    p = [p[0]*x[0]-p[1]*x[1], p[1]*x[0]+p[0]*x[1]];
-    return power(x, n-1, p)
-  }
-}
-
-var sum = function(a,b){
-  return [a[0]+b[0], a[1]+b[1]];
 }

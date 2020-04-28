@@ -4,6 +4,7 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
     <script src="http://benalman.com/code/projects/jquery-throttle-debounce/jquery.ba-throttle-debounce.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.6.4/math.min.js"></script>
     <script src="javascript/mandelbrot.js"></script>
     <script src="javascript/julia.js"></script>
     <script src="javascript/main.js"></script>
@@ -13,11 +14,14 @@
   </head>
 
   <body>
+    <div>
+      <label class="function_label">F(x) = </label><input class="function" id="function" type="text" value="x^2+c"></input>
+    </div>
+
     <div class="box_fractal">
       <canvas id="mandelbrot" width="400" height="400" style="border:1px solid #000000;"></canvas>
       <label></br>Mandelbrot set</br>
-      F(x) = x^<span id=p_m_1>2</span> + c</br>
-      x: <span id=p_m_2>[-2,2]</span></br>y: <span id=p_m_3>[-2,2]</span></br>
+      x: <span id=p_m_2>[-1.5,1.5]</span></br>y: <span id=p_m_3>[-1.5,1.5]</span></br>
       Iterations: <span id=p_m_4>200</span></br>
       <span id=loading_m></span></br></br>
       <a href="#" class="m_button" id="zoom_out_m">Zoom out</a> <a href="#" class="m_button" id="reset_m">Reset</a></label>
@@ -26,8 +30,8 @@
     <div class="box_fractal">
       <canvas id="julia" width="400" height="400" style="border:1px solid #000000;"></canvas>
       <label></br>Julia set</br>
-      F(x) = x^<span id=p_j_1>2</span> + (<span id=p_j_2>-1.5</span>) + i(<span id=p_j_3>1.5</span>)</br>
-      x: <span id=p_j_4>[-2,2]</span></br>y : <span id=p_j_5>[-2,2]</span></br>
+      c = (<span id=p_j_2>-1.5</span>) + i(<span id=p_j_3>1.5</span>)</br>
+      x: <span id=p_j_4>[-1.5,1.5]</span></br>y : <span id=p_j_5>[-1.5,1.5]</span></br>
       Iterations: <span id=p_j_6>200</span></br>
       <span id=loading_j></span></br></br>
       <a href="#" class="m_button" id="blocking">Unblocked</a> <a href="#" class="m_button" id="zoom_out_j">Zoom out</a> <a href="#" class="m_button" id="reset_j">Reset</a></label>
@@ -35,7 +39,6 @@
 
     <div class="instruction">
       <div class="slidecontainer">
-        <label>Power: </label> <input class="number_slide" id="power" type="number" value="2">
         <label id="sc">Size canvas: </label> <input class="number_slide" id="size_canvas" type="number" value="400">
       </div>
       <a href="#" class="m_button m_reset_all" id="reset">Reset all</a>

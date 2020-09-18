@@ -25,175 +25,150 @@
   </head>
 
   <body>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-2 sidebar">
-          <div class="sidebar-header">
-            <h3>Similar Fractal</h3>
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h3>Similar Fractal</h3>
+      </div>
+
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="only_last">
+        <label class="custom-control-label" for="only_last">Only last</label>
+      </div>
+
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="colored">
+        <label class="custom-control-label" for="colored">Colored</label>
+      </div>
+
+      <hr/>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-3">Size</div>
+          <div class="col-3">
+            <input class="number_slide" type="number" value="100" id="size_square">
           </div>
-
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="only_last">
-            <label class="custom-control-label" for="only_last">Only last</label>
+          <div class="col-4">
+            <input type="range" min="0" max="1000" value="100" class="slider">
           </div>
+        </div>
 
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="colored">
-            <label class="custom-control-label" for="colored">Colored</label>
+        <div class="row">
+          <div class="col-3">Repeat</div>
+          <div class="col-3">
+            <input class="number_slide" type="number" value="7" id="repetition">
           </div>
+          <div class="col-4">
+            <input type="range" min="0" max="15" value="7" class="slider">
+          </div>
+        </div>
+      </div>
 
-          <!-- <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="uncentered">
-            <label class="custom-control-label" for="uncentered">Uncentered</label>
-          </div> -->
 
-          <hr/>
+      <hr/>
 
-          <div class="container">
-            <!-- <div class="row">
-              <div class="col-3">Heigth</div>
+      <a href="#" class="myButton" id="addButton">Add</a>
+      <a href="#" class="myButton" id="randomButton">Random</a>
+
+      <hr/>
+
+      <div class="container">
+        <div class="boxes">
+          <div class="box_iteration">
+            <div class="row">
+              <div class="col-3">X</div>
               <div class="col-3">
-                <input class="number_slide" type="number" value="1000" id="heigth">
+                <input class="number_slide" type="number" value="0">
               </div>
               <div class="col-4">
-                <input type="range" min="0" max="5000" value="1000" class="slider">
+                <input type="range" min="-300" max="300" value="0" class="slider">
               </div>
             </div>
 
             <div class="row">
-              <div class="col-3">Width</div>
+              <div class="col-3">Y</div>
               <div class="col-3">
-                <input class="number_slide" type="number" value="1000" id="width">
+                <input class="number_slide" type="number" value="100">
               </div>
               <div class="col-4">
-                <input type="range" min="0" max="5000" value="1000" class="slider">
+                <input type="range" min="-300" max="300" value="100" class="slider">
               </div>
-            </div> -->
+            </div>
+
+            <div class="row">
+              <div class="col-3">Rotation</div>
+              <div class="col-3">
+                <input class="number_slide" type="number" value="45">
+              </div>
+              <div class="col-4">
+                <input type="range" min="0" max="360" value="45" class="slider">
+              </div>
+            </div>
 
             <div class="row">
               <div class="col-3">Size</div>
               <div class="col-3">
-                <input class="number_slide" type="number" value="100" id="size_square">
+                <input class="number_slide" type="number"  value="0.7" step="0.01">
               </div>
               <div class="col-4">
-                <input type="range" min="0" max="1000" value="100" class="slider">
+                <input type="range" min="0" max="1" value="0.7" class="slider" step="0.01">
+              </div>
+            </div>
+            <a href="#" class="myButton" id="removeButton">Remove</a>
+            <hr/>
+          </div>
+
+          <div class="box_iteration">
+            <div class="row">
+              <div class="col-3">X</div>
+              <div class="col-3">
+                <input class="number_slide" type="number" value="50">
+              </div>
+              <div class="col-4">
+                <input type="range" min="-300" max="300" value="50" class="slider">
               </div>
             </div>
 
             <div class="row">
-              <div class="col-3">Repeat</div>
+              <div class="col-3">Y</div>
               <div class="col-3">
-                <input class="number_slide" type="number" value="7" id="repetition">
+                <input class="number_slide" type="number" value="150">
               </div>
               <div class="col-4">
-                <input type="range" min="0" max="15" value="7" class="slider">
+                <input type="range" min="-300" max="300" value="150" class="slider">
               </div>
             </div>
+
+            <div class="row">
+              <div class="col-3">Rotation</div>
+              <div class="col-3">
+                <input class="number_slide" type="number" value="315">
+              </div>
+              <div class="col-4">
+                <input type="range" min="0" max="360" value="315" class="slider">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-3">Size</div>
+              <div class="col-3">
+                <input class="number_slide" type="number"  value="0.7" step="0.01">
+              </div>
+              <div class="col-4">
+                <input type="range" min="0" max="1" value="0.7" class="slider" step="0.01">
+              </div>
+            </div>
+            <a href="#" class="myButton" id="removeButton">Remove</a>
             <hr/>
           </div>
-
-          <div class="container">
-            <div class="boxes">
-              <div class="box_iteration">
-                <div class="row">
-                  <div class="col-3">X</div>
-                  <div class="col-3">
-                    <input class="number_slide" type="number" value="0">
-                  </div>
-                  <div class="col-4">
-                    <input type="range" min="-300" max="300" value="0" class="slider">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-3">Y</div>
-                  <div class="col-3">
-                    <input class="number_slide" type="number" value="100">
-                  </div>
-                  <div class="col-4">
-                    <input type="range" min="-300" max="300" value="100" class="slider">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-3">Rotation</div>
-                  <div class="col-3">
-                    <input class="number_slide" type="number" value="45">
-                  </div>
-                  <div class="col-4">
-                    <input type="range" min="0" max="360" value="45" class="slider">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-3">Size</div>
-                  <div class="col-3">
-                    <input class="number_slide" type="number"  value="0.7" step="0.01">
-                  </div>
-                  <div class="col-4">
-                    <input type="range" min="0" max="1" value="0.7" class="slider" step="0.01">
-                  </div>
-                </div>
-                <a href="#" class="myButton" id="removeButton">Remove</a>
-                <hr/>
-              </div>
-
-              <div class="box_iteration">
-                <div class="row">
-                  <div class="col-3">X</div>
-                  <div class="col-3">
-                    <input class="number_slide" type="number" value="50">
-                  </div>
-                  <div class="col-4">
-                    <input type="range" min="-300" max="300" value="50" class="slider">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-3">Y</div>
-                  <div class="col-3">
-                    <input class="number_slide" type="number" value="150">
-                  </div>
-                  <div class="col-4">
-                    <input type="range" min="-300" max="300" value="150" class="slider">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-3">Rotation</div>
-                  <div class="col-3">
-                    <input class="number_slide" type="number" value="315">
-                  </div>
-                  <div class="col-4">
-                    <input type="range" min="0" max="360" value="315" class="slider">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-3">Size</div>
-                  <div class="col-3">
-                    <input class="number_slide" type="number"  value="0.7" step="0.01">
-                  </div>
-                  <div class="col-4">
-                    <input type="range" min="0" max="1" value="0.7" class="slider" step="0.01">
-                  </div>
-                </div>
-                <a href="#" class="myButton" id="removeButton">Remove</a>
-                <hr/>
-              </div>
-            </div>
-          </div>
-
-          <a href="#" class="myButton" id="addButton">Add</a>
-          <a href="#" class="myButton" id="randomButton">Random</a>
-        </div>
-
-        <div class="col-10  my-auto" id="outer_canvas">
-          <!-- <div class="card card-block w-25" id="inner_canvas"> -->
-            <canvas id="similar_canvas"></canvas>
-          <!-- </div> -->
         </div>
       </div>
+    </div>
+
+    <div class="my-auto" id="outer_canvas">
+      <!-- <div class="card card-block w-25" id="inner_canvas"> -->
+        <canvas id="similar_canvas"></canvas>
+      <!-- </div> -->
     </div>
   </body>
 </html>

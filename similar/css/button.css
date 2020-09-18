@@ -24,3 +24,11 @@
 a:hover {
 	text-decoration: none;
 }
+
+#addButton{
+	margin-bottom: 10px;
+}
+
+#randomButton{
+	margin-bottom: 10px;
+}

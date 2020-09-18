@@ -3,7 +3,6 @@ var build = function(){
 	similar.repetition  = parseInt($("#repetition")[0].value);
 	similar.only_last   = $("#only_last")[0].checked;
 	similar.colored     = $("#colored")[0].checked;
-	// similar.centered    = !($("#uncentered")[0].checked);
 
 	similar.iteration = [];
 	$.each($(".boxes").children(), function(index, value){
@@ -21,11 +20,11 @@ var build = function(){
 
 var randomBuild = function(){
 	$.each($(".boxes").children(), function(index, value){ value.remove(); });
-	var number_obj = Math.floor(Math.random() * 3) + 1;
+	var number_obj = Math.floor(Math.random() * 2) + 2;
 	for (let i = 0; i < number_obj; i++){ add_fractal(); }
 	$("#size_square")[0].value = Math.floor(Math.random() * 200) + 50;
 	$("#size_square")[0].parentElement.parentElement.children[2].children[0].value = $("#size_square")[0].value;
-	$("#repetition")[0].value = 12 - number_obj;
+	$("#repetition")[0].value = 11 - number_obj;
 	$("#repetition")[0].parentElement.parentElement.children[2].children[0].value = $("#repetition")[0].value;
 	$.each($(".boxes").children(), function(index, value){
 		number = Math.floor(Math.random() * 600) - 300;
@@ -52,7 +51,6 @@ var clickEvents = function(){
 	$("#randomButton").on("mouseup", randomBuild);
 	$("#only_last").on("input", build);
 	$("#colored").on("input", build);
-	// $("#uncentered").on("input", build);
 }
 
 var change_value = function(eventObject){

@@ -9,6 +9,7 @@ var similar = {
   iteration: [],
   only_last: false,
   colored: true,
+  centered: true,
   add_iteration: function(x,y,rotation, size){
     rotation = rotation*Math.PI/180.0
     this.iteration.push([[x,y], [Math.cos(rotation), Math.sin(rotation)], size])
@@ -17,16 +18,28 @@ var similar = {
     return (1-this.repetition**this.iteration.length)/(1-this.repetition)
   },
   build: function(){
+    var min_x = 0.0;
+    var min_y = 0.0;
+    var max_x = 1.0;
+    var max_y = 1.0;
     this.new_points = [];
     this.points = [];
     var colour = fullColorHex(0, 255, 0);
     $.each(this.initialpoint, function(index, ip){
-      similar.new_points.push([
+      point = [
         colour,
         ip[0]*similar.size_square,
         ip[1]*similar.size_square
-      ])
+      ]
+      similar.new_points.push(point)
+      if(similar.centered){
+        if(min_x > point[1]){min_x = point[1];}
+        if(min_y > point[2]){min_y = point[2];}
+        if(max_x < point[1]){max_x = point[1];}
+        if(max_y < point[2]){max_y = point[2];}
+      }
     });
+
     this.points = this.points.concat(this.new_points);
 
     for(i=0; i<this.repetition; i++){
@@ -35,11 +48,18 @@ var similar = {
       new_points = [];
       $.each(similar.iteration, function(index, si){
         $.each(similar.new_points, function(index2, po){
-          new_points.push([
+          point = [
             colour,
             si[2] * (si[1][0]*po[1]-si[1][1]*po[2]) + si[0][0],
             si[2] * (si[1][1]*po[1]+si[1][0]*po[2]) + si[0][1]
-          ])
+          ]
+          new_points.push(point)
+          if(similar.centered){
+            if(min_x > point[1]){min_x = point[1];}
+            if(min_y > point[2]){min_y = point[2];}
+            if(max_x < point[1]){max_x = point[1];}
+            if(max_y < point[2]){max_y = point[2];}
+          }
         })
       })
       similar.points = similar.points.concat(new_points)
@@ -49,14 +69,29 @@ var similar = {
     if(similar.only_last){
       similar.points = similar.new_points;
     }
+
+    if(similar.centered){
+      similar.width  = max_x - min_x + 20;
+      similar.height = max_y - min_y + 20;
+      new_points = [];
+      $.each(similar.points, function(index, si){
+        new_points.push([si[0], si[1]-min_x+10, si[2]-min_y+10]);
+      });
+      similar.points = new_points;
+    }
   },
   paint: function(){
     var canvas = $("#similar_canvas");
     var square = [];
     canvas[0].width  = this.width; // in pixels
     canvas[0].height = this.height;
-    var half_width = this.width/2;
-    var half_height = this.height/2;
+    if(similar.centered){
+      var half_width = 0;
+      var half_height = canvas[0].height;
+    }else{
+      var half_width = this.width/2;
+      var half_height = this.height/2;
+    }
     var ctx = canvas[0].getContext('2d');
     ctx.clearRect(0, 0, canvas[0].width, canvas[0].height);
     for(i=0; i<similar.points.length; i += 4){

@@ -1,4 +1,6 @@
 var build = function(){
+
+    debugger
 	mandelbrot.paint();
 	julia.paint();
 }
@@ -104,26 +106,29 @@ var unblock_julia = function(){
 }
 
 var change_function = function(eventObject){
-	value = eventObject.target.value;
-	try {
-		fun = math.evaluate(value, {c:0,x:0});
-		$(".function").css("border-color", "black");
-		fun = math.compile(value);
-		mandelbrot.f = fun;
-		julia.f = fun;
-		build();
-	}catch(err){
-		$(".function").css("border-color", "red");
+	if(eventObject.keyCode === 13){
+		value = eventObject.target.value;
+		try {
+			$(".function").css("border-color", "black");
+			fun = nerdamer(value);
+			mandelbrot.f = fun;
+			julia.f = fun;
+			build();
+		}catch(err){
+			$(".function").css("border-color", "red");
+		}
 	}
 }
 
 var change_size_canvas = function(eventObject){
-	value = eventObject.target.value;
-	mandelbrot.width = value;
-	mandelbrot.height = value;
-	julia.width = value;
-	julia.height = value;
-	build();
+	if(eventObject.keyCode === 13){
+		value = eventObject.target.value;
+		mandelbrot.width = value;
+		mandelbrot.height = value;
+		julia.width = value;
+		julia.height = value;
+		build();
+	}
 }
 
 var clickEvents = function(){
@@ -137,8 +142,8 @@ var clickEvents = function(){
 	$("#zoom_out_j").on("click", zoom_out_julia);
 	$("#blocking").on("click", unblock_julia);
 	$("body").on("keyup", button_press);
-	$("body").on("input", "#function", $.debounce(1000, change_function));
-	$("body").on("input", "#size_canvas", $.debounce(1000, change_size_canvas));
+	$("#function").on("keypress", change_function);
+	$("#size_canvas").on("input", change_size_canvas);
 }
 
 $(document).ready(function(){

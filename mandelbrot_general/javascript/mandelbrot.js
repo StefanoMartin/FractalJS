@@ -1,10 +1,13 @@
+var to_complex = nerdamer("a+b*i");
+var check_abs = nerdamer("abs(x)")
+
 var mandelbrot = {
   width: 400,
   height: 400,
   x: [-2, 2],
   y: [-2, 2],
-  iteration: 200,
-  f: math.compile("x^2+c"),
+  iteration: 10,
+  f: nerdamer("x^2+c"),
   paint: function(){
     $("#loading_m")[0].innerHTML = "Loading...";
     setTimeout(function() {
@@ -67,13 +70,14 @@ var mandelbrot = {
     mandelbrot.paint();
   },
   is_of_mandelbrot: function(c){
+    console.log(c);
     var x = 0;
-    var c_i = math.complex(c[0], c[1])
-    if(math.abs(c_i) >= 2){ return 1; }
+    var c_i = to_complex.evaluate({a: c[0], b: c[1]})
+    if(check_abs.evaluate({x: c_i}).gte(2)){ return 1; }
     for(ii=0; ii<mandelbrot.iteration; ii++){
       try{x = mandelbrot.f.evaluate({c:c_i,x:x});}
       catch{ return "error"; }
-      if(math.abs(x) >= 2){ return ii+1; }
+      if(check_abs.evaluate({x: c_i}).gte(2)){ return ii+1; }
     }
     return 0
   }

@@ -1,0 +1,18 @@
+.sidebar {
+  height: 100vh;
+  background: #7386D5;
+  color: #fff;
+  z-index: 99999;
+}
+
+.sidebar-header {
+  margin-top: 10px;
+}
+
+#outer_canvas{
+  margin: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

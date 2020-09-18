@@ -5,6 +5,7 @@ var build = function(){
 	similar.repetition = parseInt($(".box_fix").children()[3].children[1].value);
 	similar.only_last = $("#only_last")[0].checked;
 	similar.colored = $("#colored")[0].checked;
+	similar.centered = $("#centered")[0].checked;
 
 	similar.iteration = [];
 	$.each($(".boxes").children(), function(index, value){
@@ -54,6 +55,7 @@ var clickEvents = function(){
 	$(".randomButton").on("mouseup", randomBuild);
 	$("#only_last").on("input", build);
 	$("#colored").on("input", build);
+	$("#centered").on("input", build);
 }
 
 var change_value = function(eventObject){

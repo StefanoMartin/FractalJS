@@ -4,14 +4,14 @@ var julia = {
   x: [-2, 2],
   y: [-2, 2],
   c: [-2, 2],
-  c_i: math.complex(-2, 2),
+  c_i: nerdamer("-2+2*i"),
   blocked: false,
   iteration: 200,
-  f: math.compile("x^2+c"),
+  f: nerdamer("x^2+c"),
   paint: function(){
     $("#loading_j")[0].innerHTML = "Loading...";
     setTimeout(function() {
-      julia.c_i = math.complex(julia.c[0], julia.c[1])
+      julia.c_i = to_complex.evaluate({a: julia.c[0], b: julia.c[1]})
       $("#p_j_4")[0].innerHTML = "[" + julia.x[0] + "," + julia.x[1] + "]";
       $("#p_j_5")[0].innerHTML = "[" + julia.y[0] + "," + julia.y[1] + "]";
       $("#p_j_6")[0].innerHTML = julia.iteration;
@@ -74,12 +74,13 @@ var julia = {
     julia.paint();
   },
   is_of_julia: function(x){
-    var x_i = math.complex(x[0], x[1])
-    if(math.abs(x_i) >= 2){ return 1; }
+    console.log(x);
+    var x_i = to_complex.evaluate({a: x[0], b: x[1]})
+    if(check_abs.evaluate({x: x_i}).gte(2)){ return 1; }
     for(ii=0; ii<julia.iteration; ii++){
       try{x_i = julia.f.evaluate({c:julia.c_i,x:x_i});}
       catch{ return "error"; }
-      if(math.abs(x_i) >= 2){ return ii+1; }
+      if(check_abs.evaluate({x: x_i}).gte(2)){ return ii+1; }
     }
     return 0
   }

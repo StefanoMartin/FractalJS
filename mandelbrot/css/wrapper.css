@@ -13,9 +13,18 @@
 .sidebar-header {
   margin-top: 15px;
   margin-left: 20px;
+  margin-bottom: 10px;
 }
 
-#outer_canvas{
+.cta{
+  text-align: center;
+}
+
+body {
+  background-color: lightblue;
+}
+
+.outer_canvas{
   margin-left: 340px;
   height: 100%;
   display: flex;
@@ -23,10 +32,6 @@
   justify-content: center;
 }
 
-.custom-control{
-	margin-left: 20px;
-}
-
-body {
-  background-color: lightblue;
+.t_canvas{
+  margin: 30px;
 }

@@ -9,8 +9,8 @@ var mandelbrot = {
   paint: function(){
     $("#loading_m")[0].innerHTML = "Loading...";
     setTimeout(function() {
-      $("#p_m_2")[0].innerHTML = "[" + mandelbrot.x[0] + "," + mandelbrot.x[1] + "]";
-      $("#p_m_3")[0].innerHTML = "[" + mandelbrot.y[0] + "," + mandelbrot.y[1] + "]";
+      $("#p_m_2")[0].innerHTML = "[" + round(mandelbrot.x[0]) + "," + round(mandelbrot.x[1]) + "]";
+      $("#p_m_3")[0].innerHTML = "[" + round(mandelbrot.y[0]) + "," +round(mandelbrot.y[1]) + "]";
       $("#p_m_4")[0].innerHTML = mandelbrot.iteration;
 
       var canvas = $("#mandelbrot");
@@ -34,7 +34,7 @@ var mandelbrot = {
         }
       }
       ctx.putImageData(id, 0, 0);
-      $("#loading_m")[0].innerHTML = "";
+      $("#loading_m")[0].innerHTML = "Ready";
     }, 0);
   },
   reset: function(){

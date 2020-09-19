@@ -50,8 +50,8 @@ var zoom_out_julia = function(){
 var create_julia = function(e){
 	if(julia.blocked){ return; }
 	x = getPoint(e);
-	$("#p_j_2")[0].innerHTML = x[0];
-	$("#p_j_3")[0].innerHTML = x[1];
+	$("#p_j_2")[0].innerHTML = round(x[0]);
+	$("#p_j_3")[0].innerHTML = round(x[1]);
 	julia.c = x;
 	julia.paint();
 }
@@ -84,6 +84,10 @@ var getPointJulia = function(e){
 var reset_fractals = function(){
 	mandelbrot.reset();
 	julia.reset();
+}
+
+var round = function(number){
+	return Math.round(number*100)/100;
 }
 
 var button_press = function(e){
@@ -132,8 +136,8 @@ var clickEvents = function(){
 	$("#zoom_out_j").on("click", zoom_out_julia);
 	$("#blocking").on("click", unblock_julia);
 	$("body").on("keyup", button_press);
-	$("body").on("input", "#power", $.debounce(1000, change_power));
-	$("body").on("input", "#size_canvas", $.debounce(1000, change_size_canvas));
+	$("body").on("input", "#power", change_power);
+	$("body").on("input", "#size_canvas", change_size_canvas);
 }
 
 $(document).ready(function(){

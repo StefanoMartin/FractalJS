@@ -11,8 +11,8 @@ var julia = {
   paint: function(){
     $("#loading_j")[0].innerHTML = "Loading...";
       setTimeout(function() {
-      $("#p_j_4")[0].innerHTML = "[" + julia.x[0] + "," + julia.x[1] + "]";
-      $("#p_j_5")[0].innerHTML = "[" + julia.y[0] + "," + julia.y[1] + "]";
+      $("#p_j_4")[0].innerHTML = "[" + round(julia.x[0]) + "," + round(julia.x[1]) + "]";
+      $("#p_j_5")[0].innerHTML = "[" + round(julia.y[0]) + "," + round(julia.y[1]) + "]";
       $("#p_j_6")[0].innerHTML = julia.iteration;
 
       var canvas = $("#julia");
@@ -36,7 +36,7 @@ var julia = {
         }
       }
       ctx.putImageData(id, 0, 0);
-      $("#loading_j")[0].innerHTML = "";
+      $("#loading_j")[0].innerHTML = "Ready";
     }, 0);
   },
   reset: function(){

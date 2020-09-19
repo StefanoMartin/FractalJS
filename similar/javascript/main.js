@@ -1,19 +1,16 @@
 var build = function(){
-	similar.height = parseInt($(".box_fix").children()[0].children[1].value);
-	similar.width = parseInt($(".box_fix").children()[1].children[1].value);
-	similar.size_square = parseInt($(".box_fix").children()[2].children[1].value);
-	similar.repetition = parseInt($(".box_fix").children()[3].children[1].value);
-	similar.only_last = $("#only_last")[0].checked;
-	similar.colored = $("#colored")[0].checked;
-	similar.centered = $("#centered")[0].checked;
+	similar.size_square = parseInt($("#size_square")[0].value);
+	similar.repetition  = parseInt($("#repetition")[0].value);
+	similar.only_last   = $("#only_last")[0].checked;
+	similar.colored     = $("#colored")[0].checked;
 
 	similar.iteration = [];
 	$.each($(".boxes").children(), function(index, value){
 		similar.add_iteration(
-			parseInt(value.children[0].children[1].value),
-			parseInt(value.children[1].children[1].value),
-			parseInt(value.children[2].children[1].value),
-			parseFloat(value.children[3].children[1].value),
+			parseInt(value.children[0].children[1].children[0].value),
+			parseInt(value.children[1].children[1].children[0].value),
+			parseInt(value.children[2].children[1].children[0].value),
+			parseFloat(value.children[3].children[1].children[0].value),
 		);
 	});
 
@@ -23,25 +20,25 @@ var build = function(){
 
 var randomBuild = function(){
 	$.each($(".boxes").children(), function(index, value){ value.remove(); });
-	var number_obj = Math.floor(Math.random() * 5) + 1;
+	var number_obj = Math.floor(Math.random() * 2) + 2;
 	for (let i = 0; i < number_obj; i++){ add_fractal(); }
-	$(".box_fix").children()[0].children[1].value = 1000
-	$(".box_fix").children()[0].children[2].value = $(".box_fix").children()[0].children[1].value;
-	$(".box_fix").children()[1].children[1].value = 1000
-	$(".box_fix").children()[1].children[2].value = $(".box_fix").children()[1].children[1].value;
-	$(".box_fix").children()[2].children[1].value = Math.floor(Math.random() * 200) + 50;
-	$(".box_fix").children()[2].children[2].value = $(".box_fix").children()[2].children[1].value;
-	$(".box_fix").children()[3].children[1].value = 12 - number_obj;
-	$(".box_fix").children()[3].children[2].value = $(".box_fix").children()[3].children[1].value;
+	$("#size_square")[0].value = Math.floor(Math.random() * 200) + 50;
+	$("#size_square")[0].parentElement.parentElement.children[2].children[0].value = $("#size_square")[0].value;
+	$("#repetition")[0].value = 11 - number_obj;
+	$("#repetition")[0].parentElement.parentElement.children[2].children[0].value = $("#repetition")[0].value;
 	$.each($(".boxes").children(), function(index, value){
-		value.children[0].children[1].value = Math.floor(Math.random() * 600) - 300;
-		value.children[0].children[2].value = value.children[0].children[1].value;
-		value.children[1].children[1].value = Math.floor(Math.random() * 600) - 300;
-		value.children[1].children[2].value = value.children[1].children[1].value;
-		value.children[2].children[1].value = Math.floor(Math.random() * 360);
-		value.children[2].children[2].value = value.children[2].children[1].value;
-		value.children[3].children[1].value = Math.random();
-		value.children[3].children[2].value = value.children[3].children[1].value;
+		number = Math.floor(Math.random() * 600) - 300;
+		value.children[0].children[1].children[0].value = number
+		value.children[0].children[2].children[0].value = number
+		number = Math.floor(Math.random() * 600) - 300;
+		value.children[1].children[1].children[0].value = number
+		value.children[1].children[2].children[0].value = number
+		number = Math.floor(Math.random() * 360);
+		value.children[2].children[1].children[0].value = number
+		value.children[2].children[2].children[0].value = number
+		number = Math.random();
+		value.children[3].children[1].children[0].value = number
+		value.children[3].children[2].children[0].value = number
 	});
 	build();
 }
@@ -49,22 +46,20 @@ var randomBuild = function(){
 var clickEvents = function(){
 	$("body").on("input", ".slider", change_value);
 	$("body").on("input", ".number_slide", change_value_slide);
-	$("body").on("mouseup", ".myButton", delete_fractal);
-	$(".addButton").on("mouseup", add_fractal);
-	$(".buildButton").on("mouseup", build);
-	$(".randomButton").on("mouseup", randomBuild);
+	$("body").on("mouseup", "#removeButton", delete_fractal);
+	$("#addButton").on("mouseup", add_fractal);
+	$("#randomButton").on("mouseup", randomBuild);
 	$("#only_last").on("input", build);
 	$("#colored").on("input", build);
-	$("#centered").on("input", build);
 }
 
 var change_value = function(eventObject){
-	eventObject.target.parentElement.children[1].value = eventObject.target.value;
+	eventObject.target.parentElement.parentElement.children[1].children[0].value = eventObject.target.value;
 	build();
 }
 
 var change_value_slide = function(eventObject){
-	eventObject.target.parentElement.children[2].value = eventObject.target.value;
+	eventObject.target.parentElement.parentElement.children[2].children[0].value = eventObject.target.value;
 	build();
 }
 
@@ -75,24 +70,48 @@ var delete_fractal = function(eventObject){
 
 var add_fractal = function(){
 	var m = `<div class="box_iteration">
-			<div class="slidecontainer">
-				<label>X: </label> <input class="number_slide" type="number" value="100"> <input type="range" min="-300" max="300" value="100" class="slider">
+		<div class="row">
+			<div class="col-3">X</div>
+			<div class="col-3">
+				<input class="number_slide" type="number" value="100">
 			</div>
-
-			<div class="slidecontainer">
-				<label>Y: </label> <input class="number_slide" type="number" value="100"> <input type="range" min="-300" max="300" value="100" class="slider">
+			<div class="col-4">
+				<input type="range" min="-300" max="300" value="100" class="slider">
 			</div>
+		</div>
 
-			<div class="slidecontainer">
-				<label>Rotation: </label> <input class="number_slide" type="number" value="45"> <input type="range" min="0" max="360" value="45" class="slider">
+		<div class="row">
+			<div class="col-3">Y</div>
+			<div class="col-3">
+				<input class="number_slide" type="number" value="100">
 			</div>
-
-			<div class="slidecontainer">
-				<label>Size: </label> <input class="number_slide" type="number" value="0.5" step="0.01"> <input type="range" min="0" max="1" value="0.5" class="slider" step="0.01">
+			<div class="col-4">
+				<input type="range" min="-300" max="300" value="100" class="slider">
 			</div>
+		</div>
 
-			<a href="#" class="myButton">Remove</a>
-		</div>`
+		<div class="row">
+			<div class="col-3">Rotation</div>
+			<div class="col-3">
+				<input class="number_slide" type="number" value="45">
+			</div>
+			<div class="col-4">
+				<input type="range" min="0" max="360" value="45" class="slider">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-3">Size</div>
+			<div class="col-3">
+				<input class="number_slide" type="number"  value="0.5" step="0.01">
+			</div>
+			<div class="col-4">
+				<input type="range" min="0" max="1" value="0.5" class="slider" step="0.01">
+			</div>
+		</div>
+		<a href="#" class="myButton">Remove</a>
+		<hr/>
+	</div>`
 
 	$(".boxes").append(m);
 	build();
